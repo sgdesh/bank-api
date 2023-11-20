@@ -86,7 +86,6 @@ Run the following command to create the database tables:
    ```bash
     npx prisma migrate dev
 
-The project will be running on http://localhost:3000.
 3. Generate Prisma Client:
 
    ```bash
