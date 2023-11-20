@@ -1,4 +1,4 @@
-# Bank Management System
+# Bank API Prototype
 
 The Bank Account Backend is an API-based project that provides functionalities for managing customers, bank accounts, loans, and transactions. The project uses PostgreSQL as the database, Prisma as the ORM (Object-Relational Mapping), and Swagger for API documentation.
 
@@ -18,9 +18,7 @@ The Bank Account Backend is an API-based project that provides functionalities f
     - [Running the Project](#running-the-project)
     - [API Endpoints](#api-endpoints)
     - [Swagger Documentation](#swagger-documentation)
-    - [Contributing](#contributing)
-    - [License](#license)
-    - [Acknowledgments](#acknowledgments)
+    - [CI/CD](#cicd)
 
 ## Introduction
 
@@ -46,46 +44,68 @@ The Bank Management System is designed to handle various aspects of a banking sy
 Ensure you have the following installed on your machine:
 
 - Node.js: [Download and Install Node.js](https://nodejs.org/)
+- PostgreSQL: [Download and Install PostgreSQL](https://www.postgresql.org/download/)
+- Prisma: [Install Prisma](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/using-postgres)
+- Prisma Studio: [Install Prisma Studio](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/using-postgres)
+- Swagger: [Install Swagger](https://swagger.io/docs/open-source-tools/swagger-ui/usage/installation/)
 
 ### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/sgdesh/bank-api.git
 
-Prisma Studio
-Use Prisma Studio to interactively explore your database:
+2. Install the depenedencies:
 
-bash
-Copy code
-npx prisma studio
-Running the Project
-Start the project:
+   ```bash
+   npm install
 
-bash
-Copy code
-npm start
+3. Create a .env file in the root directory and add the following environment variables:
+
+   ```bash
+   DATABASE_URL="postgresql://<username>:<password>@localhost:5432/<database-name>?schema=public"
+   PORT=3000
+   ```
+    Replace the values with your database credentials.
+4. Run the project:
+
+   ```bash
+   npm run dev
+   
+## Database Setup
+### Prisma Migration
+Run the following command to create the database tables:
+1. Create a migration:
+
+   ```bash
+   npx prisma migrate dev --name init
+
+2. Run the migration:
+
+   ```bash
+    npx prisma migrate dev
+
 The project will be running on http://localhost:3000.
+3. Generate Prisma Client:
 
-API Endpoints
-/customers: Customer-related APIs.
-/bank-accounts: Bank account-related APIs.
-/loans: Loan-related APIs.
-/transactions: Transaction-related APIs.
+   ```bash
+   npx prisma generate
+   
+4. Access Prisma Studio:
+
+   ```bash
+   npx prisma studio
+
+### API Endpoints
+- /customers: Customer-related APIs.
+- /bank-accounts: Bank account-related APIs.
+- /loans: Loan-related APIs.
+- /transactions: Transaction-related APIs.
 Refer to the Swagger documentation or explore the ./docs directory for detailed information on each endpoint.
 
-Swagger Documentation
+### API Documentation
 Access the Swagger documentation for detailed information about the APIs:
+-  [Swagger UI](http://localhost:3000/api-docs)
 
-Swagger Documentation
-
-Contributing
-Feel free to contribute to this project. Check the Contributing Guidelines for more details.
-
-License
-This project is licensed under the MIT License.
-
-Acknowledgments
-The Prisma team for providing a powerful ORM solution.
-The Swagger team for simplifying API documentation.
+### CI/CD
